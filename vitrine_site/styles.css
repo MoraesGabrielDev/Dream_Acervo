@@ -185,6 +185,7 @@ section.container .lista .item .conteudo h2 {
 }
 
 section.container .lista .item .conteudo .descriçao-carro {
+  font-family: "Google Sans", sans-serif;
   color: white;
   font-size: 15px;
   text-align: right;
@@ -294,6 +295,7 @@ section.container .lista .indicadores {
 }
 
 section.container .lista .indicadores .numero {
+  display: none;
   font-size: 5em;
   color: white;
   font-family: "League Gothic", sans-serif;
@@ -1012,10 +1014,24 @@ body {
     border-radius: 14px;
   }
 }
-@media (max-width: 380px) {
-:root { --header-h: 66px; }
 
-  section.container .lista { width: 96vw; }
+@media (max-width: 480px) {
+  :root { --header-h: 66px; }
+
+section.container{
+  height: 120vw;
+}
+
+  section.container .lista { width: 95vw;
+  height: 99vw; }
+
+  section.container .lista .item .car-img {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  width: 60%; /* menor tamanho do carro */
+}
 
 
   section.container .lista .indicadores .numero {
@@ -1034,15 +1050,61 @@ body {
     width: 16px;
   }
   section.container .lista .item .conteudo {
-    width: 85px;
+    width: 20px;
   }
 
    section.container .lista .item .conteudo h2 {
-    font-size: 1.3em;
+    font-size: 1em;
+    text-transform: uppercase;
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 391px) {
+:root { --header-h: 66px; }
+
+section.container{
+  height: 120vw;
+}
+
+  section.container .lista { width: 95vw;
+  height: 99vw; }
+
+  section.container .lista .item .car-img {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  width: 60%; /* menor tamanho do carro */
+}
+
+
+  section.container .lista .indicadores .numero {
+    font-size: 2em;
+    color: #fff;
+    font-family: "League Gothic", sans-serif;
+    margin-left: 6px;
+  }
+
+  section.container .lista .arrows button {
+    width: 25px;
+    height: 25px;
+  }
+
+  section.container .lista .arrows button img {
+    width: 16px;
+  }
+  section.container .lista .item .conteudo {
+    width: 20px;
+  }
+
+   section.container .lista .item .conteudo h2 {
+    font-size: 0.9em;
+    text-transform: uppercase;
+  }
+}
+
+
+@media (max-width: 361px) {
   :root { --header-h: 66px; }
 
   section.container .lista { width: 96vw; }
@@ -1068,25 +1130,8 @@ body {
   }
 
    section.container .lista .item .conteudo h2 {
-    font-size: 1.3em;
+    font-size: 1em;
   }
-  .section .wrap { padding: 0 10px; }
-  .acervo { padding: 12px; border-radius: 14px; }
-
-  .section-title { font-size: 1.4rem; }
-  .title-underline { width: 74px; }
-
-  .filters { padding: 8px; }
-  .pill { padding: 9px 10px; font-size: .85rem; }
-  .pill .brand-icon { width: 16px; height: 16px; }
-
-  .grid { padding: 10px; gap: 10px; }
-  .thumb { height: 190px; }
-
-  .meta h4 { font-size: .95rem; }
-  .meta p { font-size: .85rem; }
-
-  .bottom { padding: 10px; gap: 10px; }
-  .bottom-left .mini { font-size: .8rem; padding: 7px 9px; }
+  
 }
 
