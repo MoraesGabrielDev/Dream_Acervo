@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Museu 3D - Dream Car</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-content">
+            <img src="imgs/LOGO (1).png" alt="Dream Car Logo" class="logo">
+        </div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+        <nav class="header-links">
+            <a href="#">Nosso acervo</a>
+            <a href="#">Destaques</a>
+            <a href="#">Temáticos</a>
+        </nav>
+    </header>
+
+      <section class="container">
+      <!--inicio home-->
+
+      <div class="lista hidden">
+        <div class="item active">
+          <div class="car-img">
+            <img src="imgs/fordao.png" alt="imagem carro" />
+          </div>
+
+          <div class="conteudo">
+            <p class="info-carro"></p>
+
+            <h2>Ford GT</h2>
+
+            <p class="descriçao-carro">
+              
+            </p>
+
+            <button class="saiba-mais">
+              <a href="">Saiba mais</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="item active">
+          <div class="car-img">
+            <img src="imgs/diablo_window_black.png" alt="imagem carro" />
+          </div>
+
+          <div class="conteudo">
+            <p class="info-carro"></p>
+
+            <h2>Lamborghini Diablo</h2>
+
+            <p class="descriçao-carro">
+              
+            </p>
+
+            <button class="saiba-mais">
+              <a href="">Saiba mais</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="item active">
+          <div class="car-img">
+            <img src="imgs/nsx_capa.png" alt="imagem carro" />
+          </div>
+
+          <div class="conteudo">
+            <p class="info-carro"></p>
+
+            <h2>Honda NSX</h2>
+
+            <p class="descriçao-carro">
+              
+            </p>
+
+            <button class="saiba-mais">
+              <a href="https://carros.finans.cloud/mercedes-sls/">Saiba mais</a>
+            </button>
+          </div>
+        </div>
+        
+        <div class="arrows">
+          <button class="prev">
+            <img src="imgs/arrow.png" alt="seta esuqerda" />
+          </button>
+          <button class="next">
+            <img src="imgs/arrow.png" alt="seta direita" />
+          </button>
+        </div>
+
+        <div class="indicadores">
+          <div class="numero">01</div>
+
+          <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!--final home-->
+
+
+    <section class="logo-marquee-wrapper" aria-label="Marcas do acervo">
+    <div class="logo-marquee">
+        <div class="logo-track">
+            <img src="imgs/logo_mustang6.png" alt="Ford">
+            <img src="imgs/ferrari-4.svg" alt="Ferrari">
+            <img src="imgs/porsche-4.svg" alt="Porsche">
+            <img src="imgs/lamborghini.svg" alt="Lamborghini">
+            <img src="imgs/corvette_logoo.png" alt="Chevrolet">
+            <img src="imgs/bmw-8.svg" alt="BMW">
+            <img src="imgs/mercedes-benz-9.svg" alt="Mercedes">
+            <img src="imgs/cadillac-1.svg" alt="Cadillac">
+
+             <img src="imgs/logo_mustang6.png" alt="Ford">
+            <img src="imgs/ferrari-4.svg" alt="Ferrari">
+            <img src="imgs/porsche-4.svg" alt="Porsche">
+            <img src="imgs/lamborghini.svg" alt="Lamborghini">
+            <img src="imgs/corvette_logoo.png" alt="Chevrolet">
+            <img src="imgs/bmw-8.svg" alt="BMW">
+            <img src="imgs/mercedes-benz-9.svg" alt="Mercedes">
+            <img src="imgs/cadillac-1.svg" alt="Cadillac">
+
+        </div>
+    </div>
+</section>
+
+<div class="bg"></div>
+
+    <section class="section">
+    <div class="wrap">
+      <h2 class="section-title">Nosso acervo</h2>
+      <div class="title-underline"></div>
+
+      <div class="acervo">
+        <!-- FILTROS TOP -->
+        <div class="filters">
+          <div class="filters-left" id="filters">
+            <div class="pill active" data-brand="all">All</div>
+
+            <div class="pill" data-brand="chevrolet">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/chevrolet/111111" />
+              Chevrolet
+            </div>
+
+            <div class="pill" data-brand="lamborghini">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/lamborghini/111111" />
+              Lamborghini
+            </div>
+
+            <div class="pill" data-brand="ferrari">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/ferrari/111111" />
+              Ferrari
+            </div>
+
+            <div class="pill" data-brand="porsche">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/porsche/111111" />
+              Porsche
+            </div>
+
+            <div class="pill" data-brand="mercedes">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/mercedes/111111" />
+              Mercedes-Benz
+            </div>
+
+            <div class="pill" data-brand="cadillac">
+              <img class="brand-icon" alt="" src="https://cdn.simpleicons.org/cadillac/111111" />
+              Cadillac
+            </div>
+          </div>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid" id="grid">
+          <!-- CARD 1 -->
+          <article class="card" data-brand="Ferrari">
+            <div class="thumb" style="background-image:url('imgs/testarossa.png');"></div>
+            <div class="info">
+              <div class="badge">F</div>
+              <div class="meta">
+                <h4>Ferrari Testarossa</h4>
+                <p>1984</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="card" data-brand="lamborghini">
+            <div class="thumb" style="background-image:url('imgs/lamborghini_diablo.png');"></div>
+            <div class="info">
+              <div class="badge">L</div>
+              <div class="meta">
+                <h4>Lamborghini Diablo</h4>
+                <p>1990</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="card" data-brand="porsche">
+            <div class="thumb" style="background-image:url('imgs/911_targa.png');"></div>
+            <div class="info">
+              <div class="badge">P</div>
+              <div class="meta">
+                <h4>Porsche 911 Targa</h4>
+                <p>1980</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4 -->
+          <article class="card" data-brand="lamborghini">
+            <div class="thumb" style="background-image:url('imgs/honda_nsx.png');"></div>
+            <div class="info">
+              <div class="badge">H</div>
+              <div class="meta">
+                <h4>Honda Acura NSX</h4>
+                <p>2001</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 5 -->
+          <article class="card" data-brand="mercedes">
+            <div class="thumb" style="background-image:url('imgs/SUPERBIRD.png');"></div>
+            <div class="info">
+              <div class="badge">P</div>
+              <div class="meta">
+                <h4>Plymouth Superbird</h4>
+                <p>1970</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 6 -->
+          <article class="card" data-brand="cadillac">
+            <div class="thumb" style="background-image:url('imgs/fastbck.png');"></div>
+            <div class="info">
+              <div class="badge">M</div>
+              <div class="meta">
+                <h4>Mustang Fastback</h4>
+                <p>1961</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="bottom">
+          <div class="bottom-left">
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/chevrolet/111111"> All</div>
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/lamborghini/111111"> Lamborghini</div>
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/ferrari/111111"> Ferrari</div>
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/porsche/111111"> Porsche</div>
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/mercedes/111111"> Mercedes-Benz</div>
+            <div class="mini"><img alt="" src="https://cdn.simpleicons.org/cadillac/111111"> Cadillac</div>
+          </div>
+
+          <button class="btn" type="button">
+            Ver todos <span style="font-size:18px;line-height:0;">›</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <script>
+    // Filtro simples (replica o comportamento do mockup)
+    const pills = [...document.querySelectorAll(".pill")];
+    const cards = [...document.querySelectorAll(".card")];
+
+    function setActive(brand){
+      pills.forEach(p => p.classList.toggle("active", p.dataset.brand === brand));
+      cards.forEach(c => {
+        const ok = brand === "all" || c.dataset.brand === brand;
+        c.style.display = ok ? "block" : "none";
+      });
+    }
+
+    pills.forEach(p => p.addEventListener("click", () => setActive(p.dataset.brand)));
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const carData = [
+            { name: "Ford GT", year: "2005 V8 Supercharged" },
+            { name: "Ferrari F40", year: "1987 V8 Twin-Turbo" },
+            { name: "Porsche 911", year: "1973 Carrera RS" },
+        ];
+
+        const swiper = new Swiper(".swiper", {
+            loop: true,
+            speed: 800,
+            allowTouchMove: false,
+            grabCursor: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            on: {
+                slideChange: function () {
+                    const index = this.realIndex;
+                    document.getElementById("main-title").innerText = carData[index].name;
+                    document.getElementById("main-year").innerText = carData[index].year;
+                },
+            },
+        });
+    </script>
+
+    <script>
+        // Torna o marquee contínuo e suave: espera imagens carregarem antes de rodar
+        document.addEventListener('DOMContentLoaded', function () {
+            const marquee = document.querySelector('.logo-marquee');
+            if (!marquee) return;
+            const track = marquee.querySelector('.logo-track');
+            if (!track) return;
+
+            const containerWidth = marquee.clientWidth || marquee.offsetWidth;
+
+            // Coleta conjunto único de logos (por src+alt)
+            const imgs = Array.from(track.querySelectorAll('img'));
+            const seen = new Set();
+            const originals = [];
+            imgs.forEach(img => {
+                const key = img.getAttribute('src') + '|' + (img.getAttribute('alt') || '');
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    originals.push(img.cloneNode(true));
+                }
+            });
+            if (originals.length === 0) return;
+
+            // Reconstrói faixa com um conjunto repetido suficientes vezes
+            track.innerHTML = '';
+            const appendOriginals = () => originals.forEach(n => track.appendChild(n.cloneNode(true)));
+            appendOriginals();
+            let singleWidth = track.scrollWidth;
+            let safety = 0;
+            while (singleWidth < containerWidth && safety < 20) {
+                appendOriginals();
+                singleWidth = track.scrollWidth;
+                safety++;
+            }
+
+            // Duplicar exatamente o bloco (loop perfeito)
+            const singleHTML = track.innerHTML;
+            track.innerHTML = singleHTML + singleHTML;
+
+            // Calcula duração baseada na largura de um conjunto (move 1 conjunto por ciclo)
+            const distancePx = track.scrollWidth / 2;
+            const speedPxPerSec = 30; // menor = mais lento
+            const durationSec = Math.max(40, Math.round(distancePx / speedPxPerSec));
+            track.style.animationTimingFunction = 'linear';
+            track.style.animationDuration = durationSec + 's';
+
+            // Espera todas as imagens carregarem antes de iniciar a animação
+            const images = Array.from(track.querySelectorAll('img'));
+            const loadPromises = images.map(img => {
+                if (img.complete && img.naturalWidth !== 0) return Promise.resolve();
+                return new Promise(res => {
+                    img.addEventListener('load', res);
+                    img.addEventListener('error', res);
+                });
+            });
+
+            Promise.all(loadPromises).then(() => {
+                // Força uma pequena timeout para garantir pintura e evitar micro-jumps
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        track.classList.add('marquee-running');
+                    });
+                });
+            });
+        });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+  const items = document.querySelectorAll('.item');
+  const indicators = document.querySelectorAll('.indicadores ul li');
+  const numberDisplay = document.querySelector('.numero');
+  let currentIndex = 0;
+
+  function updateCarousel() {
+      // ativa apenas as classes; animações são controladas via CSS
+      items.forEach((item, index) => {
+        if (index === currentIndex) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+          item.classList.remove('tilt');
+        }
+      });
+      // remove inclinações imediatamente e reaplica após a entrada (timing coincide com CSS)
+      items.forEach(i => i.classList.remove('tilt'));
+      setTimeout(() => {
+        const active = items[currentIndex];
+        if (active) active.classList.add('tilt');
+      }, 520);
+      indicators.forEach((indicator, index) => {
+          if (index === currentIndex) {
+              indicator.classList.add('active');
+          } else {
+              indicator.classList.remove('active');
+          }
+      });
+      numberDisplay.textContent = `0${currentIndex + 1}`;
+  }
+
+  if (prevButton) {
+      prevButton.addEventListener('click', function() {
+          currentIndex = (currentIndex - 1 + items.length) % items.length;
+          updateCarousel();
+      });
+  } else {
+      console.error('Elemento com a classe "prev" não encontrado.');
+  }
+
+  if (nextButton) {
+      nextButton.addEventListener('click', function() {
+          currentIndex = (currentIndex + 1) % items.length;
+          updateCarousel();
+      });
+  } else {
+      console.error('Elemento com a classe "next" não encontrado.');
+  }
+
+  if (items.length > 0 && indicators.length > 0 && numberDisplay) {
+      updateCarousel();
+  } else {
+      console.error('Elementos necessários não encontrados.');
+  }
+});
+    </script>
+        <script>
+          // Mobile menu toggle
+          document.addEventListener('DOMContentLoaded', function(){
+            const toggle = document.querySelector('.menu-toggle');
+            const header = document.querySelector('.main-header');
+            const nav = document.querySelector('nav.header-links');
+            if(!toggle || !header || !nav) return;
+
+            function setOpen(open){
+              header.classList.toggle('mobile-open', open);
+              toggle.setAttribute('aria-expanded', String(!!open));
+              document.body.classList.toggle('no-scroll', !!open);
+            }
+
+            toggle.addEventListener('click', function(e){
+              const open = header.classList.contains('mobile-open');
+              setOpen(!open);
+            });
+
+            // close when clicking a nav link
+            nav.addEventListener('click', function(e){
+              if(e.target.tagName.toLowerCase() === 'a') setOpen(false);
+            });
+
+            // close on Esc
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setOpen(false); });
+          });
+        </script>
+</body>
+</html>

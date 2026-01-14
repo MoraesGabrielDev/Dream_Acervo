@@ -1,0 +1,1092 @@
+/* styles.css - CSS extraído e otimizado */
+/* Reset e configurações base */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f6f4ea 0%, #e9e6d0 40%, #e2e0c8 100%);
+  color: #111;
+  font-family: "Google Sans", system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial;
+  overflow-x: hidden;
+}
+
+/* ======================================================================
+   SUMÁRIO / SEÇÕES
+   - Header
+   - Hero / Capa
+   - Carousel (lista, itens)
+   - Arrows
+   - Indicators
+   - Marquee
+   - Theme variables (root)
+   - Background
+   - Section / Acervo (grid, cards)
+   - Responsivo
+  ====================================================================== */
+
+/* HEADER */
+.main-header {
+  width: 100%;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 66, 37, 0.97);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 0 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+/* ===== HAMBURGER / MOBILE NAV ===== */
+.menu-toggle{
+  display: none;
+  background: transparent;
+  border: none;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.menu-toggle .hamburger{
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #e2e0c8;
+  position: relative;
+}
+.menu-toggle .hamburger::before,
+.menu-toggle .hamburger::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #e2e0c8;
+}
+.menu-toggle .hamburger::before{ top: -7px; }
+.menu-toggle .hamburger::after{ top: 7px; }
+.header-content {
+  position: absolute;
+  left: 70px;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 120px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.main-header:hover .logo {
+  transform: scale(1.05);
+}
+nav.header-links {
+  display: flex;
+  gap: 40px;
+}
+.header-links a {
+  color: #e2e0c8;
+  text-decoration: none;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  position: relative;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+.header-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: #e2e0c8;
+  transition: width 0.3s;
+}
+.header-links a:hover {
+  color: #fff;
+}
+.header-links a:hover::after {
+  width: 100%;
+}
+
+/* ===== HERO / CAPA (layout flat selectors) ===== */
+/* Carousel / Lista (capa principal) */
+section.container {
+  height: 100vh;
+  position: relative;
+  
+}
+
+section.container .lista {
+  width: 85vw; /* aumentado para comportar a imagem maior */
+  max-width: 1600px;
+  margin: auto;
+  height: 90%;
+  position: relative;
+  overflow: hidden; /* garante que o pseudo-elemento de fundo fique aparente somente atrás do conteúdo */
+  
+}
+
+section.container .lista .item {
+  position: absolute;
+  inset: 0;
+}
+
+section.container .lista .item .car-img {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  width: 48%; /* menor tamanho do carro */
+}
+
+section.container .lista .item .car-img img {
+  width: 100%;
+  /* começa abaixo e sem rotação; entra subindo */
+  transform: translateY(22px) rotate(0deg);
+  transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+section.container .lista .item .conteudo {
+  position: absolute;
+  right: 8%;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+section.container .lista .item .conteudo .info-carro {
+  font-weight: bold;
+  color: #e2ddcc;
+}
+
+section.container .lista .item .conteudo h2 {
+  font-size: 3em;
+  line-height: 1em;
+  color: #b10f0f;
+  font-family: "League Gothic", sans-serif;
+  margin: 0;
+}
+
+section.container .lista .item .conteudo .descriçao-carro {
+  color: white;
+  font-size: 15px;
+  text-align: right;
+  max-width: 400px;
+}
+
+section.container .lista .item .conteudo .saiba-mais {
+  border-radius: 30px;
+  height: 35px;
+  width: 120px;
+  border: none;
+  background-color: #b10f0f;
+  cursor: pointer;
+}
+
+section.container .lista::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* background image blurred behind the carousel content (doesn't blur the content) */
+/* Background borrado para a seção inteira */
+section.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('imgs/FUNDO2.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) saturate(0.9);
+  transform: scale(1.05);
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: -1; /* fica acima do .bg (z:-2) e abaixo do conteúdo da section */
+}
+
+/* ===== ARROWS (navegação) ===== */
+section.container .lista .arrows {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 30;
+}
+
+section.container .lista .arrows button {
+  pointer-events: auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.95);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease;
+  z-index: 60; /* garante que ambas setas fiquem acima de outros elementos */
+}
+
+section.container .lista .arrows button img {
+  width: 26px;
+}
+section.container .lista .arrows button.prev img {
+  transform: scaleX(-1);
+}
+
+/* hover / focus effects for arrows */
+/* Hover e foco explícitos para as duas setas */
+section.container .lista .arrows button.prev:hover,
+section.container .lista .arrows button.prev:focus,
+section.container .lista .arrows button.next:hover,
+section.container .lista .arrows button.next:focus {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.36);
+  background-color: #ffffff;
+}
+
+section.container .lista .arrows button.prev:active,
+section.container .lista .arrows button.next:active {
+  transform: translateY(-2px) scale(0.995);
+}
+
+/* ===== INDICADORES / CONTADOR ===== */
+section.container .lista .indicadores {
+  position: absolute;
+  /* move o bloco de indicadores mais para a borda (aumenta distância do carro) */
+  left: 0.8%;
+  /* posiciona mais para baixo conforme pedido (menor bottom => mais abaixo) */
+  bottom: 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  z-index: 25;
+}
+
+section.container .lista .indicadores .numero {
+  font-size: 5em;
+  color: white;
+  font-family: "League Gothic", sans-serif;
+  /* pequeno espaçamento entre número e carro */
+  margin-left: 6px;
+}
+
+
+/* Desktop layout (original carousel rules remain above) */
+/* Removed mobile-first overrides and media queries per request; the
+   main desktop carousel styles are defined earlier in the file. */
+
+
+section.container .lista .indicadores ul {
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+section.container .lista .indicadores ul li {
+  width: 50px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+section.container .lista .indicadores ul li.active {
+  background: #b10f0f;
+}
+
+/* item default/active transitions */
+section.container .lista .item {
+  transform: translateX(100vw);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+section.container .lista .item.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+/* Ao ficar ativo: sobe sem inclinar; inclinação será aplicada por uma classe separada */
+section.container .lista .item.active .car-img img {
+  transform: translateY(0) rotate(0deg);
+}
+
+/* Inclinação aplicada após a entrada estar completa */
+section.container .lista .item.tilt .car-img img {
+  transform: translateY(0) rotate(-22deg);
+  transition: transform 0.45s ease;
+}
+section.container .lista .item .conteudo .info-carro,
+section.container .lista .item .conteudo h2,
+section.container .lista .item .conteudo .descriçao-carro,
+section.container .lista .item .conteudo .saiba-mais {
+  transform: translateX(200px);
+  transition: transform 0.5s ease;
+}
+section.container .lista .item.active .conteudo .info-carro,
+section.container .lista .item.active .conteudo h2,
+section.container .lista .item.active .conteudo .descriçao-carro,
+section.container .lista .item.active .conteudo .saiba-mais {
+  transform: translateX(0);
+}
+
+/* ===== botão 'saiba-mais' hover ===== */
+section.container .lista .item .conteudo .saiba-mais {
+  transition: transform 0.2s ease, background-color 0.18s ease,
+    box-shadow 0.18s ease, color 0.18s ease;
+  display: inline-grid;
+  place-items: center;
+}
+section.container .lista .item .conteudo .saiba-mais:hover,
+section.container .lista .item .conteudo .saiba-mais:focus {
+  transform: translateY(-4px);
+  background-color: #b10f0f;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+section.container .lista .item .conteudo .saiba-mais a {
+  color: #e9e6d0;
+  text-decoration: none;
+}
+section.container .lista .item .conteudo .saiba-mais:hover a {
+  color: #e9e6d0;
+}
+.center {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== MARQUEE (lista de logos) ===== */
+.logo-marquee-wrapper {
+  position: relative;
+  padding: 45px 0;
+  background-color: #e9e6d0;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+}
+.logo-marquee-wrapper::before,
+.logo-marquee-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+.logo-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #e9e6d0 0%,
+    rgba(233, 230, 208, 0) 100%
+  );
+}
+.logo-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #e9e6d0 0%, rgba(233, 230, 208, 0) 100%);
+}
+.logo-marquee {
+  width: 100%;
+  overflow-x: hidden;
+}
+.logo-track {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  /* start paused until JS confirms images loaded to avoid jumps */
+  animation: marquee 45s linear infinite;
+  animation-play-state: paused;
+  padding: 10px 0;
+}
+.logo-track img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.logo-track.marquee-running {
+  animation-play-state: running;
+}
+.logo-track img:hover {
+  filter: grayscale(0) drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+  opacity: 1;
+  transform: scale(1.15);
+  z-index: 10;
+}
+.logo-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* ===== THEME VARIABLES ===== */
+:root {
+  /* Use as fontes que você já carrega no seu site */
+  --font-body: inherit;
+
+  --green-900: #0f3b2f;
+  --green-800: #124236;
+  --green-700: #145043;
+
+  --ink: #1f1f1f;
+  --muted: rgba(0, 0, 0, 0.55);
+
+  /* “papel” */
+  --paper: #f4f6f2; /* branco gelo */
+  --paper-2: #e2ddcc; /* borda interna */
+  --paper-3: #ffffff; /* brilho pontual */
+
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+  --shadow-soft: 0 10px 22px rgba(0, 0, 0, 0.14);
+
+  --radius-outer: 28px;
+  --radius-card: 18px;
+
+  /* pedidos */
+  --title-red: #b10f0f;
+  --underline: #000000;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  min-height: 100vh;
+  background: #0b0f0d;
+}
+
+/* ===== Background blur (conteúdo não borra) ===== */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: #e2e0c8;
+  overflow: hidden;
+  filter: blur(8px);
+  transform: scale(1.15);
+}
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      900px 520px at 55% 15%,
+      rgba(255, 255, 255, 0.3),
+      transparent 4%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+
+/* ===== SECTION / ACERVO ===== */
+/* aumenta espaçamento superior para não ficar colado ao header */
+.section {
+  padding: 120px 18px 70px;
+}
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Título (vermelho) + linha preta ===== */
+.section-title {
+  text-align: center;
+  margin: 0 0 14px;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--title-red);
+  letter-spacing: 0.02em;
+}
+.title-underline {
+  width: 170px;
+  height: 3px;
+  background: var(--underline);
+  margin: 0 auto 28px;
+  border-radius: 999px;
+  opacity: 0.95;
+}
+
+/* ===== Container “Acervo” ===== */
+/* Container “Acervo” - usar bege do marquee */
+.acervo {
+  background: #e9e6d0 !important; /* mesmo bege do marquee */
+  border-radius: var(--radius-outer);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Garante que a section que contém o acervo também mostre o bege */
+.section {
+  background: #e9e6d0 !important;
+}
+.wrap {
+  background: transparent;
+}
+.wrap > .acervo {
+  background: #e9e6d0 !important;
+}
+
+/* Barra topo (filtros) */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.filters-left {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  overflow: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.filters-left::-webkit-scrollbar {
+  height: 8px;
+}
+.filters-left::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 999px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 0.72);
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: transform 0.12s ease, background 0.18s ease,
+    border-color 0.18s ease;
+}
+.pill:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-1px);
+}
+.pill.active {
+  background: linear-gradient(180deg, var(--green-800), var(--green-900));
+  color: #ecf4ee;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* Ícones (use SVG/PNG depois; aqui é demo com SimpleIcons) */
+.brand-icon {
+  width: 26px;
+  height: 18px;
+  opacity: 0.95;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.15));
+}
+.pill.active .brand-icon {
+  filter: brightness(1.25) drop-shadow(0 1px 0 rgba(255, 255, 255, 0.1));
+}
+
+/* ===== Grid ===== */
+.grid {
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  transition: transform 0.14s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.thumb {
+  height: 170px;
+  background: #ddd center/cover no-repeat;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.info {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.55);
+  flex: 0 0 auto;
+}
+
+.meta h4 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.1;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.72);
+}
+.meta p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.52);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Bottom bar ===== */
+.bottom {
+  padding: 14px 18px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.bottom-left {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  overflow: auto;
+  padding-bottom: 6px;
+  flex: 1;
+  scrollbar-width: thin;
+  opacity: 0.9;
+}
+
+.mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.58);
+  font-weight: 900;
+  white-space: nowrap;
+}
+.mini img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.78;
+}
+
+.btn {
+  flex: 0 0 auto;
+  border: none;
+  background: linear-gradient(180deg, var(--green-700), var(--green-900));
+  color: #ecf4ee;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn:hover {
+  filter: brightness(1.05);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ===== Responsivo ===== */
+
+
+@media (max-width: 576px) {
+  /* Ajustes do carousel */
+  section.container .lista {
+    width: 96vw;
+  }
+
+  section.container .lista .item .conteudo h2 {
+    font-size: 2em;
+  }
+
+   section.container .lista .item .conteudo {
+    width: 125px;
+  }
+
+  section.container .lista .arrows button {
+    width: 35px;
+    height: 33px;
+  }
+
+  section.container .lista .indicadores .numero {
+    font-size: 3.5em;
+    color: #fff;
+    font-family: "League Gothic", sans-serif;
+    margin-left: 6px;
+  }
+
+  /* Header + menu mobile */
+  :root { --header-h: 72px; }
+
+  .main-header {
+    height: var(--header-h);
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2000;
+    position: relative;
+  }
+
+  .logo { width: 88px; }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2100;
+    position: relative; right: 0;
+  }
+
+  .menu-toggle .hamburger {
+    position: relative;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    display: block;
+  }
+
+  .menu-toggle .hamburger::before,
+  .menu-toggle .hamburger::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    transition: transform .22s ease, top .22s ease, opacity .18s ease;
+  }
+
+  .menu-toggle .hamburger::before { top: -8px; }
+  .menu-toggle .hamburger::after  { top:  8px; }
+
+  nav.header-links {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    height: calc(100dvh - var(--header-h));
+    padding: 18px 16px;
+
+    background: rgba(0,66,37,0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .26s ease, opacity .26s ease;
+    z-index: 2050;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav.header-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ecf4ee;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  nav.header-links a:active { transform: scale(0.99); }
+
+  .main-header.mobile-open nav.header-links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .main-header.mobile-open .menu-toggle .hamburger { background: transparent; }
+  .main-header.mobile-open .menu-toggle .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .main-header.mobile-open .menu-toggle .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  body.no-scroll { overflow: hidden; }
+    .section .wrap { padding: 0 12px; }
+  .acervo { padding: 14px; border-radius: 16px; }
+
+  /* Título */
+  .section-title {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .title-underline { margin: 10px auto 18px; width: 86px; }
+
+  /* FILTROS: vira faixa rolável */
+  .filters { padding: 10px 10px; }
+  .filters-left {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+
+    /* “snap” opcional (fica com cara de app) */
+    scroll-snap-type: x proximity;
+  }
+  .filters-left::-webkit-scrollbar { height: 6px; }
+  .filters-left::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 99px; }
+
+  .pill {
+    flex: 0 0 auto;
+    padding: 10px 12px;
+    font-size: .9rem;
+    border-radius: 999px;
+    scroll-snap-align: start;
+  }
+  .pill .brand-icon { width: 18px; height: 18px; }
+
+  /* GRID: 1 coluna */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  /* Cards mais “mobile-friendly” */
+  .card { border-radius: 16px; }
+  .thumb { height: 210px; background-size: cover; background-position: center; }
+
+  .info {
+    padding: 12px;
+    gap: 10px;
+  }
+  .badge {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+  .meta h4 { font-size: 1rem; line-height: 1.1; }
+  .meta p { font-size: .9rem; opacity: .85; }
+
+  /* BOTTOM: vira coluna */
+  .bottom {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bottom-left {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+  .bottom-left .mini {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 999px;
+    font-size: .85rem;
+  }
+  .bottom-left .mini img { width: 16px; height: 16px; }
+
+  .bottom .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+}
+@media (max-width: 380px) {
+:root { --header-h: 66px; }
+
+  section.container .lista { width: 96vw; }
+
+
+  section.container .lista .indicadores .numero {
+    font-size: 2em;
+    color: #fff;
+    font-family: "League Gothic", sans-serif;
+    margin-left: 6px;
+  }
+
+  section.container .lista .arrows button {
+    width: 25px;
+    height: 25px;
+  }
+
+  section.container .lista .arrows button img {
+    width: 16px;
+  }
+  section.container .lista .item .conteudo {
+    width: 85px;
+  }
+
+   section.container .lista .item .conteudo h2 {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 360px) {
+  :root { --header-h: 66px; }
+
+  section.container .lista { width: 96vw; }
+
+
+  section.container .lista .indicadores .numero {
+    font-size: 2em;
+    color: #fff;
+    font-family: "League Gothic", sans-serif;
+    margin-left: 6px;
+  }
+
+  section.container .lista .arrows button {
+    width: 25px;
+    height: 25px;
+  }
+
+  section.container .lista .arrows button img {
+    width: 16px;
+  }
+  section.container .lista .item .conteudo {
+    width: 85px;
+  }
+
+   section.container .lista .item .conteudo h2 {
+    font-size: 1.3em;
+  }
+  .section .wrap { padding: 0 10px; }
+  .acervo { padding: 12px; border-radius: 14px; }
+
+  .section-title { font-size: 1.4rem; }
+  .title-underline { width: 74px; }
+
+  .filters { padding: 8px; }
+  .pill { padding: 9px 10px; font-size: .85rem; }
+  .pill .brand-icon { width: 16px; height: 16px; }
+
+  .grid { padding: 10px; gap: 10px; }
+  .thumb { height: 190px; }
+
+  .meta h4 { font-size: .95rem; }
+  .meta p { font-size: .85rem; }
+
+  .bottom { padding: 10px; gap: 10px; }
+  .bottom-left .mini { font-size: .8rem; padding: 7px 9px; }
+}
+
