@@ -759,14 +759,14 @@ section.container .lista .item.active .conteudo .saiba-mais{
     gap: 16px;
   }
   section.container .lista .item .conteudo h2{
-    font-size: 2em;
+    font-size: 1.5em;
   }
 
   section.container .lista .arrows button{
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
   }
-  section.container .lista .arrows button img{ width: 18px; }
+  section.container .lista .arrows button img{ width: 8px; }
 
   /* se quiser mostrar o 01 no mobile, ligue aqui */
   /* section.container .lista .indicadores .numero{ display:block; } */
