@@ -1061,9 +1061,13 @@ section.container{
 
 @media (max-width: 391px) {
 :root { --header-h: 66px; }
-
+body{
+   overflow: hidden;
+}
 section.container{
   height: 120vw;
+  width: 100vw;
+ 
 }
 
   section.container .lista { width: 95vw;
@@ -1074,7 +1078,7 @@ section.container{
   top: 50%;
   left: 6%;
   transform: translateY(-50%);
-  width: 60%; /* menor tamanho do carro */
+  width: 65%; /* menor tamanho do carro */
 }
 
 
@@ -1098,7 +1102,7 @@ section.container{
   }
 
    section.container .lista .item .conteudo h2 {
-    font-size: 0.9em;
+    font-size: 1.1em;
     text-transform: uppercase;
   }
 }
