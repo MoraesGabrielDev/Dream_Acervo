@@ -1062,7 +1062,7 @@ section.container{
 @media (max-width: 391px) {
 :root { --header-h: 66px; }
 body{
-   overflow: hidden;
+   overflow-y: hidden;
 }
 section.container{
   height: 120vw;
@@ -1078,7 +1078,7 @@ section.container{
   top: 50%;
   left: 6%;
   transform: translateY(-50%);
-  width: 65%; /* menor tamanho do carro */
+  width: 63%; /* menor tamanho do carro */
 }
 
 
@@ -1102,7 +1102,7 @@ section.container{
   }
 
    section.container .lista .item .conteudo h2 {
-    font-size: 1.1em;
+    font-size: 1em;
     text-transform: uppercase;
   }
 }
@@ -1138,4 +1138,5 @@ section.container{
   }
   
 }
+
 
