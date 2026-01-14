@@ -1062,7 +1062,7 @@ section.container{
 @media (max-width: 391px) {
 :root { --header-h: 66px; }
 body{
-   overflow-y: hidden;
+   overflow-x: hidden;
 }
 section.container{
   height: 120vw;
@@ -1138,5 +1138,6 @@ section.container{
   }
   
 }
+
 
 
