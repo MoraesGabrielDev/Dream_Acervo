@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Acervo - Dream Car</title>
+    <title>Museu 3D - Dream Car</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,13 +55,13 @@
 
         <div class="item active">
           <div class="car-img">
-            <img src="imgs/superbird.png" alt="imagem carro" />
+            <img src="imgs/diablo_window_black.png" alt="imagem carro" />
           </div>
 
           <div class="conteudo">
             <p class="info-carro"></p>
 
-            <h2>Superbird</h2>
+            <h2>Lamborghini Diablo</h2>
 
             <p class="descriçao-carro">
               
@@ -238,7 +238,7 @@
 
           <!-- CARD 5 -->
           <article class="card" data-brand="mercedes">
-            <div class="thumb" style="background-image:url('imgs/SUPERBIRD1.png');"></div>
+            <div class="thumb" style="background-image:url('imgs/SUPERBIRD.png');"></div>
             <div class="info">
               <div class="badge">P</div>
               <div class="meta">
@@ -479,7 +479,36 @@
             document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setOpen(false); });
           });
         </script>
+        <script>
+  // ACERVO: anima cards 1 por 1 conforme entram na tela
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.grid .card');
+    if (!cards.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        // adiciona delay (stagger)
+        const el = entry.target;
+        const idx = Number(el.dataset.i || 0);
+        el.style.setProperty('--d', (idx * 90) + 'ms');
+        el.classList.add('in');
+
+        // anima só uma vez
+        io.unobserve(el);
+      });
+    }, {
+      root: null,
+      threshold: 0.15
+    });
+
+    cards.forEach((card, i) => {
+      card.dataset.i = i;
+      io.observe(card);
+    });
+  });
+</script>
+
 </body>
 </html>
-
-
