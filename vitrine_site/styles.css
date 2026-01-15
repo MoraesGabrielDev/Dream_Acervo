@@ -241,7 +241,7 @@ section.container::after{
   background-image: url("imgs/FUNDO2.jpeg");
   background-size: cover;
   background-position: center;
-  filter: blur(10px) saturate(0.9);
+  filter: blur(12px) saturate(0.9);
   transform: scale(1.05);
   opacity: 0.95;
   pointer-events: none;
@@ -660,33 +660,94 @@ section.container .lista .item.active .conteudo .saiba-mais{
 }
 .btn:hover{ filter: brightness(1.05); }
 .btn:active{ transform: translateY(1px); }
+.grid .card{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .55s ease, transform .55s ease, box-shadow .18s ease;
+  will-change: transform, opacity;
+}
+
+/* quando entra */
+.grid .card.in{
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--d, 0ms); /* delay por card (stagger) */
+}
+
+/* mantém seu hover bonito sem “brigar” com a animação */
+.grid .card.in:hover{
+  transform: translateY(-2px);
+}
+
+/* enquanto não entrou, não deixa hover “puxar” */
+.grid .card:not(.in):hover{
+  transform: translateY(18px);
+}
+
+/* acessibilidade */
+@media (prefers-reduced-motion: reduce){
+  .grid .card{
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 
 /* =========================
    RESPONSIVO (576 / 360)
    ========================= */
 
 /* <= 576px */
-@media (max-width: 576px){
-  :root{ --header-h: 72px; }
+/* <= 576px — carro acima da linha e título logo abaixo, bem rente */
+/* =========================
+   MOBILE <= 576px
+   - mantém o menu hambúrguer do seu código (576px)
+   - carro acima / linha no meio / título abaixo (tudo centralizado)
+   - remove tilt/translate do carro no mobile
+   ========================= */
 
-  /* header: logo entra no fluxo e toggle vai pro canto direito */
-  .main-header{
-    padding: 0 14px;
-    justify-content: space-between;
-  }
-  .header-content{
-    position: static;
-    left: auto;
-  }
-  .logo{ width: 88px; }
+   @media (max-width: 768px) {
 
-  .menu-toggle{
+     section.container .lista{
+      width: 95vw;
+     }
+
+    .menu-toggle{
     display: inline-flex;
-    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
     z-index: 2100;
+    margin-left: auto;
   }
 
-  /* painel do menu */
+  .menu-toggle .hamburger{
+    position: relative;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    display: block;
+  }
+  .menu-toggle .hamburger::before,
+  .menu-toggle .hamburger::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    transition: transform .22s ease, top .22s ease, opacity .18s ease;
+  }
+  .menu-toggle .hamburger::before{ top: -8px; }
+  .menu-toggle .hamburger::after { top:  8px; }
+
   nav.header-links{
     position: fixed;
     top: var(--header-h);
@@ -694,7 +755,6 @@ section.container .lista .item.active .conteudo .saiba-mais{
     right: 0;
     height: calc(100dvh - var(--header-h));
     padding: 18px 16px;
-
     background: rgba(0,66,37,0.98);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -713,6 +773,7 @@ section.container .lista .item.active .conteudo .saiba-mais{
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
+
   nav.header-links a{
     display: flex;
     align-items: center;
@@ -726,55 +787,226 @@ section.container .lista .item.active .conteudo .saiba-mais{
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.10);
   }
+
   .main-header.mobile-open nav.header-links{
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }
-  body.no-scroll{ overflow: hidden; }
 
-  /* hamburger -> X */
   .main-header.mobile-open .menu-toggle .hamburger{ background: transparent; }
   .main-header.mobile-open .menu-toggle .hamburger::before{
-    top: 0; transform: rotate(45deg);
+    top: 0;
+    transform: rotate(45deg);
   }
   .main-header.mobile-open .menu-toggle .hamburger::after{
-    top: 0; transform: rotate(-45deg);
+    top: 0;
+    transform: rotate(-45deg);
+  }
+  section.container .lista{
+    width: 99vw;}
+
+   }
+    section.container .lista .arrows button{
+  width: 36px;
+  height: 36px;
+}
+
+section.container .lista .item .conteudo h2{
+    font-size: 2em;}
+
+@media (max-width: 576px){
+  :root{ --header-h: 72px; }
+
+  /* ===== HEADER + HAMBURGUER (576px) ===== */
+  .main-header{
+    height: var(--header-h);
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
-  /* hero: mantém proporção sem “altura em vw” */
+  .header-content{
+    position: static;
+    left: auto;
+  }
+
+  .logo{ width: 88px; }
+
+  .menu-toggle{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 2100;
+    margin-left: auto;
+  }
+
+  .menu-toggle .hamburger{
+    position: relative;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    display: block;
+  }
+  .menu-toggle .hamburger::before,
+  .menu-toggle .hamburger::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 26px;
+    height: 2px;
+    background: #ecf4ee;
+    border-radius: 999px;
+    transition: transform .22s ease, top .22s ease, opacity .18s ease;
+  }
+  .menu-toggle .hamburger::before{ top: -8px; }
+  .menu-toggle .hamburger::after { top:  8px; }
+
+  nav.header-links{
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    height: calc(100dvh - var(--header-h));
+    padding: 18px 16px;
+    background: rgba(0,66,37,0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .26s ease, opacity .26s ease;
+    z-index: 2050;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav.header-links a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ecf4ee;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .main-header.mobile-open nav.header-links{
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .main-header.mobile-open .menu-toggle .hamburger{ background: transparent; }
+  .main-header.mobile-open .menu-toggle .hamburger::before{
+    top: 0;
+    transform: rotate(45deg);
+  }
+  .main-header.mobile-open .menu-toggle .hamburger::after{
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  body.no-scroll{ overflow: hidden; }
+
+  /* ===== HERO ===== */
   section.container{
     min-height: 100svh;
     padding-top: var(--header-h);
   }
+
   section.container .lista{
     width: 96vw;
     height: calc(100svh - var(--header-h));
   }
 
-  /* carro e conteúdo mais “compactos” */
+  /* ===== LINHA NO MEIO ===== */
+  section.container .lista::before{
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+  }
+
+  /* ===== CARRO CENTRALIZADO ACIMA DA LINHA (RENTE) ===== */
+  section.container .lista .item .car-img{
+    left: 50% !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: calc(39% + 6px);    /* ajuste fino */
+    transform: translateX(-50%) !important;
+    width: min(80vw, 520px) !important;
+    z-index: 45;
+  }
+
+  /* ===== CONTEÚDO CENTRALIZADO ABAIXO DA LINHA (RENTE) ===== */
   section.container .lista .item .conteudo{
-    width: 44%;
-    right: 6%;
-    gap: 16px;
+    left: 50% !important;
+    right: auto !important;
+    top: calc(50% + 6px) !important; /* ajuste fino */
+    height: auto !important;
+    transform: translateX(-50%) !important;
+    width: min(92vw, 420px) !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 10px !important;
+    z-index: 45;
+
   }
+
+  /* ===== CARRO RETO (sem translate/rotate/tilt) ===== */
+  section.container .lista .item .car-img img,
+  section.container .lista .item.active .car-img img,
+  section.container .lista .item.tilt .car-img img{
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* ===== REMOVE ENTRADA DO TEXTO NO MOBILE (sem “vindo da direita”) ===== */
+  section.container .lista .item .conteudo .info-carro,
+  section.container .lista .item .conteudo h2,
+  section.container .lista .item .conteudo .descriçao-carro,
+  section.container .lista .item .conteudo .saiba-mais{
+    transform: none !important;
+  }
+
+  /* Título ajustado */
   section.container .lista .item .conteudo h2{
-    font-size: 1.5em;
+    font-size: 1.8em;
+    margin: 0 !important;
+    line-height: 1 !important;
+    text-transform: uppercase;
   }
-
   section.container .lista .arrows button{
-    width: 20px;
-    height: 20px;
-  }
-  section.container .lista .arrows button img{ width: 8px; }
-
-  /* se quiser mostrar o 01 no mobile, ligue aqui */
-  /* section.container .lista .indicadores .numero{ display:block; } */
-
-  /* ACERVO mobile */
-  .section .wrap{ padding: 0 12px; }
+  width: 36px;
+  height: 36px;
+}
+ .section .wrap{ padding: 0 12px; }
   .acervo{ padding: 14px; border-radius: 16px; }
 
+  /* título */
   .section-title{
     font-size: 1.6rem;
     letter-spacing: 1px;
@@ -785,35 +1017,64 @@ section.container .lista .item.active .conteudo .saiba-mais{
     width: 86px;
   }
 
-  .filters{ padding: 10px; }
+  /* filtros: faixa rolável */
+  .filters{ padding: 10px 10px; }
   .filters-left{
+    display: flex;
+    gap: 10px;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    gap: 10px;
+    padding-bottom: 6px;
+    scroll-snap-type: x proximity;
   }
+  .filters-left::-webkit-scrollbar{ height: 6px; }
+  .filters-left::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.18); border-radius: 99px; }
+
   .pill{
     flex: 0 0 auto;
     padding: 10px 12px;
     font-size: .9rem;
+    border-radius: 999px;
+    scroll-snap-align: start;
   }
   .pill .brand-icon{ width: 18px; height: 18px; }
 
+  /* grid: 1 coluna */
   .grid{
     grid-template-columns: 1fr !important;
     gap: 12px;
     padding: 12px;
   }
-  .thumb{ height: 210px; }
 
+  /* cards */
+  .card{ border-radius: 16px; }
+  .thumb{
+    height: 210px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .info{ padding: 12px; gap: 10px; }
+  .badge{
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+  .meta h4{ font-size: 1rem; line-height: 1.1; }
+  .meta p{ font-size: .9rem; opacity: .85; }
+
+  /* bottom: vira coluna */
   .bottom{
     padding: 12px;
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
     gap: 12px;
   }
   .bottom-left{
+    display: flex;
     flex-wrap: nowrap;
     gap: 10px;
     overflow-x: auto;
@@ -823,41 +1084,81 @@ section.container .lista .item.active .conteudo .saiba-mais{
   }
   .bottom-left .mini{
     flex: 0 0 auto;
-    font-size: .85rem;
     white-space: nowrap;
+    padding: 8px 10px;
+    border-radius: 999px;
+    font-size: .85rem;
   }
   .bottom-left .mini img{ width: 16px; height: 16px; }
 
   .bottom .btn{
     width: 100%;
     justify-content: center;
+    padding: 12px 14px;
     border-radius: 14px;
   }
 }
 
-/* <= 360px */
+/* ===== ACERVO (mobile <= 360px) — ajuste fino ===== */
 @media (max-width: 360px){
-  :root{ --header-h: 66px; }
+  .thumb{ height: 190px; }
+  .section-title{ font-size: 1.4rem; }
+  .title-underline{ width: 78px; }
 
-  .main-header{ padding: 0 10px; }
+}
+
+@media (max-width: 480px){
+:root{ --header-h: 66px; }
+
   .logo{ width: 78px; }
 
-  section.container .lista{ width: 96vw; }
-
-  section.container .lista .arrows button{
-    width: 28px;
-    height: 28px;
+  section.container .lista .item .car-img{
+    width: min(82vw, 440px) !important;
+    bottom: calc(45% + 5px);
   }
-  section.container .lista .arrows button img{ width: 16px; }
 
   section.container .lista .item .conteudo{
-    width: 46%;
-    gap: 12px;
+    top: calc(50% + 5px) !important;
+    width: min(94vw, 360px) !important;
+    gap: 8px !important;
   }
+
   section.container .lista .item .conteudo h2{
-    font-size: 1.1em;
+    font-size: 1.6em;
     text-transform: uppercase;
   }
 
-  .thumb{ height: 190px; }
+  section.container .lista .arrows button{
+  width: 36px;
+  height: 36px;
+}
+}
+
+/* <= 360px */
+@media (max-width: 360px){
+ 
+  :root{ --header-h: 66px; }
+
+  .logo{ width: 78px; }
+
+  section.container .lista .item .car-img{
+    width: min(82vw, 440px) !important;
+    bottom: calc(45% + 5px);
+  }
+
+  section.container .lista .item .conteudo{
+    top: calc(50% + 5px) !important;
+    width: min(94vw, 360px) !important;
+    gap: 8px !important;
+  }
+
+  section.container .lista .item .conteudo h2{
+    font-size: 1.6em;
+    text-transform: uppercase;
+  }
+
+  section.container .lista .arrows button{
+  width: 36px;
+  height: 36px;
+}
 }
